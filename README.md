@@ -1,4 +1,4 @@
-# ProiectoFinCursoMariaIlyes
+# ProyectoFinCursoMariaIlyes
 Es un proiecto de fin de curso de DAW
 
 ## Hoja de ruta
