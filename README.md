@@ -16,12 +16,20 @@ Es un proiecto de fin de curso de DAW
 
          He subido  el documento con la portada el 23.03.2024
 
-El enfoque del proyecto se va hacer creando las características fundamentales y luego, a medida que el tiempo lo permita, añdire las caracteristicas 
-adicionales y mejorare la aplicacion incluida su grafica.
+El enfoque del proyecto se va hacer creando las características fundamentales y luego, a medida que el tiempo lo permita, añadire las caracteristicas 
+adicionales y mejorare la aplicación incluida su grafica.
+  La aplicación tendrá una página de inicio llamada "index". Desde la página de inicio se podrá viajar a distintas páginas:
+  compania, servicios, nuevoUsuario, usuarioLogado. También desde la página inicial se podrá contactar con la empresa a través de la cuenta de Linkedin,
+  el email, e bien llamando al teléfono.
 
 ## Mockup plan
 | Mockup  | Inicio  |  Fin   |
 | :-----: | :-----: | :-----:|
 | Empezado| 11.04.2024 |  ----|
-
+| paginas :                |
+| index       |||
+| compania        |||
+|  servicios       |||
+| nuevoUsuario         |||
+| usuarioLogado       |||
 
