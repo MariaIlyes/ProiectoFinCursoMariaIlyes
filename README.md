@@ -16,3 +16,12 @@ Es un proiecto de fin de curso de DAW
 
          He subido  el documento con la portada el 23.03.2024
 
+El enfoque del proyecto se va hacer creando las características fundamentales y luego, a medida que el tiempo lo permita, añdire las caracteristicas 
+adicionales y mejorare la aplicacion incluida su grafica.
+
+## Mockup plan
+| Mockup  | Inicio  |  Fin   |
+| :-----: | :-----: | :-----:|
+| Empezado| 11.04.2024 |  ----|
+
+
