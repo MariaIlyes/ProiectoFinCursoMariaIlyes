@@ -25,7 +25,7 @@ adicionales y mejorare la aplicación incluida su grafica.
 ## Mockup plan
 | Mockup  | Inicio  |  Fin   |
 | :-----: | :-----: | :-----:|
-| Empezado| 11.04.2024 |  ----|
+| Empezado| 11.04.2024 | 12.04.2024 |
 | paginas :                |
 | index       |||
 | compania        |||
