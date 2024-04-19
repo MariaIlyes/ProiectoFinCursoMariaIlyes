@@ -38,18 +38,30 @@ adicionales y mejorare la aplicación incluida su grafica.
 
 ## Configuracion proyecto
 Inicializamos el proyecto en node.js
+
 Para ello tenemos que tener instalado node.js  el npm (Node Package Manager).
+
 Terminal: npm init
+
 Esto ha inicializado en package.json
+
 Terminal: npm install express ejs body-parser mysql2
+
 MVC
+
 Modell view controller
+
 Creamos 4 carpetas para separar conceptos:
 config, models, views, controllers
+
 Creamos el app.js en la raíz y un index.html en views.
+
 Ejecutamos en terminal: node app.js
+
 Renombramos index.html a index.ejs
+
 Terminal: npm install nodemon
+
 Creamos las páginas vacías: index,compania, usuarioNuevo,usuarioLogado, servicios, crear, modificar, eliminar. 
  
 
