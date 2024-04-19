@@ -41,28 +41,57 @@ Inicializamos el proyecto en node.js
 
 Para ello tenemos que tener instalado node.js  el npm (Node Package Manager).
 
-Terminal: npm init
+Terminal: 
+
+   **npm init**
 
 Esto ha inicializado en package.json
 
-Terminal: npm install express ejs body-parser mysql2
+Terminal:
 
+   **npm install express ejs body-parser mysql2**
+   
 MVC
 
 Modell view controller
 
 Creamos 4 carpetas para separar conceptos:
-config, models, views, controllers
+ 
+  **config**
+    
+   **models**
+   
+   **views**
+   
+   **controllers**
 
-Creamos el app.js en la raíz y un index.html en views.
+Creamos el **app.js** en la raíz y un **index.ejs** en views.
 
-Ejecutamos en terminal: node app.js
+Ejecutamos en terminal: 
 
-Renombramos index.html a index.ejs
+   **node app.js**
 
-Terminal: npm install nodemon
+Terminal: 
 
-Creamos las páginas vacías: index,compania, usuarioNuevo,usuarioLogado, servicios, crear, modificar, eliminar. 
+   **npm install nodemon**
+
+Creamos las páginas vacías:
+
+   **index**
+
+   **compania** 
+
+   **usuarioNuevo**
+
+   **usuarioLogado**
+
+   **servicios**
+
+   **crear**
+
+   **modificar**
+
+   **eliminar** 
  
 
 
