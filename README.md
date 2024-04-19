@@ -43,6 +43,7 @@ Para ello tenemos que tener instalado node.js  el npm (Node Package Manager).
 
 Terminal: 
 
+
    **npm init**
 
 Esto ha inicializado en package.json
