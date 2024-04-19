@@ -27,9 +27,12 @@ adicionales y mejorare la aplicación incluida su grafica.
 | :-----: | :-----: | :-----:|
 | Empezado| 11.04.2024 | 15.04.2024 |
 | paginas :                |
-| index       |||
-| compania        |||
-|  servicios       |||
-| nuevoUsuario         |||
-| usuarioLogado       |||
+| index       |  19.04.2024||
+| compania        | 19.04.2024||
+| servicios       | 19.04.2024||
+| nuevoUsuario         | 19.04.2024||
+| usuarioLogado       | 19.04.2024||
+| crear     | 19.04.2024 ||
+| modificar    |  19.04.2024 ||
+| eliminar    |   19.04.2024 ||
 
