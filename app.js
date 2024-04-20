@@ -3,7 +3,7 @@ import bodyParser  from'body-parser';
 import {conexion} from'./config/database.js';
 const app = express();
 
-const port = 3000;
+const port = 5000;
 
 app.use(express.static('views'));
 app.set('view engine' , 'ejs');
