@@ -9,6 +9,9 @@ class Empleado{
         this.contrasena = contrasena;
         this.usuario = usuario;
     }
+     getEmpleados() {
+        return;     
+     }
 }
 
 export default Empleado;

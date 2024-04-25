@@ -1,0 +1,46 @@
+
+        body {
+            background: linear-gradient(to right, #3498db, #f39c12);
+        }
+        .form-container{
+            background: linear-gradient(to right ,#f39c12, #3498db);  
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .big{
+            font-size: 250px;
+        }
+        .flecha{
+            font-size: 50px;
+        }
+        #loginUsuario{
+            border: 2px solid #3498db;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 50px #f71d1d;
+            width: 400px;
+        }
+        .blanco{
+            font-size: 10px;
+            color: #fcfcfc
+        }
+        .linkedin{
+            background-image: url("/imagenes/linkedin.jpg");
+            background-size: cover;
+            width: 80px;
+            height: 80px;
+        }
+        .email{
+            background-image: url("/imagenes/email.jpg");
+            background-size: cover;
+            width: 80px;
+            height: 80px;
+        }
+        .telefono{
+            background-image: url("/imagenes/telefono.jpg");
+            background-size: cover;
+            width: 80px;
+            height: 80px;
+        }
+        
+    
