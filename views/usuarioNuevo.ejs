@@ -10,13 +10,13 @@
             background: linear-gradient(to right, #3498db, #f39c12);
         }
         .form-container{
-            background: linear-gradient(to right ,#f39c12, #3498db);  
+            background: linear-gradient(to right, #f39c12, #3498db );
             border-radius: 10px;
             padding: 20px;
         }
         .labelUsuarioNuevo{
             font-size: 75px;
-            color:#fcfcfc;
+            color:#f5f1f1;
         }
         .flecha{
             font-size: 50px;
@@ -25,27 +25,27 @@
             border: 2px solid #3498db;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0px 0px 50px #f71d1d;
+            box-shadow: 0px 0px 50px #e0580f;
             width: 400px;
         }
         .blanco{
             font-size: 10px;
-            color: #fcfcfc
+            color: #f5f1f1;
         }
         .linkedin{
-            background-image: url("/imagenes/linkedin.jpg");
+            background-image: url('/imagenes/linkedin.jpg');
             background-size: cover;
             width: 80px;
             height: 80px;
         }
         .email{
-            background-image: url("/imagenes/email.jpg");
+            background-image: url('/imagenes/email.jpg');
             background-size: cover;
             width: 80px;
             height: 80px;
         }
         .telefono{
-            background-image: url("/imagenes/telefono.jpg");
+            background-image: url('/imagenes/telefono.jpg');
             background-size: cover;
             width: 80px;
             height: 80px;
@@ -53,56 +53,68 @@
     </style>
 </head>
 <body>
-   
-    <div class ="container">
+    <div class="container">
         <img src="/imagenes/mait.jpg" alt="Logo empresa MaIT">
         <label class="labelUsuarioNuevo">Nuevo Usuario</label>
-    <div  class="container mt-1">
+    <div>
         <form id="nuevoUsuario" action="/crearUsuario" method="POST">
-            <div class="form-group">
-                <label for="nombre">Nombre:</label>
-            <center>
-                <input type="text" id="nombre" name="nombre">
-            </center>
-                <label for="apellidos">Apellidos:</label>
-            <center>
-                <input type="text" id="apellidos" name="apellidos">
-            </center>
-            <label for="telefono">Teléfono:</label>
-            <center>
-                <input type="text" id="telefono" name="telefono">
-            </center>
-                <label for="nif">NIF:</label>
-            <center>
-                <input type="text" id="nif" name="nif">
-            </center>
-            <label for="email">Email:</label>
-            <center>
-                <input type="text" id="email" name="email">
-            </center>
-                <label for="contrasena">Contraseña:</label>
-            <center>
-                <input type="text" id="contrasena" name="contrasena">
-            </center>
-            <label for="usuario">Usuario:</label>
-            <center>
-                <input type="text" id="usuario" name="usuario">
-            </center>
+            <div class="smallContainer">
+                <div>
+                    <div>
+                        <label for="nombre">Nombre:</label>
+                    </div>
+                    <div>
+                        <label for="apellidos">Apellidos:</label>
+                    </div>
+                    <div>
+                        <label for="telefono">Teléfono:</label>
+                    </div>
+                    <div>
+                        <label for="nif">NIF:</label>
+                    </div>
+                    <div>
+                        <label for="email">Email:</label>
+                    </div>
+                    <div>
+                        <label for="contrasena">Contraseña:</label>
+                    </div>
+                    <div>
+                        <label for="usuario">Usuario:</label>
+                    </div>
+                </div>
+                <div>   
+                    <div>             
+                        <input type="text" id="nombre" name="nombre">
+                    </div>
+                    <div>                
+                        <input type="text" id="apellidos" name="apellidos">
+                    </div>   
+                    <div>             
+                        <input type="text" id="telefono" name="telefono">
+                    </div>
+                    <div>                
+                        <input type="text" id="nif" name="nif">
+                    </div>    
+                    <div>            
+                        <input type="text" id="email" name="email">
+                    </div>
+                    <div>               
+                        <input type="text" id="contrasena" name="contrasena">
+                    </div>
+                    <div>
+                        <input type="text" id="usuario" name="usuario">
+                    </div>
+                </div>
             </div>
             <center>
             <button type="submit" class="btn btn-success">Crear Usuario</button>
-        </center>
+            </center>
         </form>
     </div>
     <br>
-    <button onclick="goIndex()" class="flecha">&larr; Pagina inicial</button>
+    <form action="/" method="GET">
+    <button class="flecha">&larr; Página inicial</button>
+    </form>
     </div>
-    <script>
-        function goIndex(){
-            window.location.href = "index";
-        }
-    </script>
-    </body>
-    </body>
 </body>
 </html>
