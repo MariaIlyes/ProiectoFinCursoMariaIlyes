@@ -1,16 +1,13 @@
 class Empleado{
-    constructor(id, nombre, apellidos, telefono, nif, email, contrasena, usuario){
+    constructor(id, nombre, telefono, puesto, sueldo){
         this.id = id;
         this.nombre = nombre;
-        this.apellidos = apellidos;
         this.telefono = telefono;
-        this.nif = nif;
-        this.email = email;
-        this.contrasena = contrasena;
-        this.usuario = usuario;
+        this.puesto = puesto;
+        this.sueldo = sueldo;
     }
-     getEmpleados() {
-        return;     
+    async getallEmpleados() {
+        console.log("Dame empleados")    
      }
 }
 

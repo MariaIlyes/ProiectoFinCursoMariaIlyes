@@ -60,11 +60,12 @@ body {
 }
 .smallContainer{
     display: grid;
-    grid-template-columns: 300px 300px;
-    justify-content: space-around;
-    align-items: flex-end;
-    width:100%;
+    grid-template-columns: 100px 300px;
+    grid-template-rows: 50px;
     height: auto;
+}
+.bigInput{
+    width: 300px;
 }
 .imgRound{
     border-radius: 100%;
@@ -83,8 +84,17 @@ p{
     font-size: 100px;
 }
 .rectangulo {
+    align-content: space-evenly;
+    justify-content: center;
     width: 320px;
     height: 300px;
+    background-color: white;
+    border: 2px solid black;
+    position: relative;
+}
+.bigRectangulo {
+    width: 640px;
+    height: 600px;
     background-color: white;
     border: 2px solid black;
     position: relative;
@@ -93,4 +103,49 @@ p{
     color: rgb(7, 7, 7); 
     font-size: 20px;
     justify-content: center;
+}
+.labelUsuarioNuevo{
+    font-size: 75px;
+    color:#f5f1f1;
+}
+.tabla-contenedor {
+    max-height: 200px; /* Altura máxima del contenedor */
+    overflow-y: auto; /* Habilita el desplazamiento vertical */
+    border: 2px solid #ddd; /* Borde del contenedor */
+    width: auto;
+    height: auto;
+}
+table {
+   /* width: 100%;*/
+    width: 820px;
+    height: 200px;
+    border-collapse: collapse;
+    border: 2px solid #06336a; /* Borde de la tabla */
+}
+/* Estilos para la cabecera */
+.cabecera {
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+}
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #e47f12; /* Borde entre filas */
+}
+td{
+    color:#c2d7da;
+}
+
+tr:hover {
+    background-color: #106142; /* Cambia el color de fondo al pasar el ratón */
+}
+
+/* Estilos para las cabeceras */
+th {
+    background-color: #4CAF50; /* Color de fondo */
+    color: rgb(255, 255, 255); /* Color del texto */
+}
+.selected {
+    background-color: #106142; /* Cambia el color de fondo de la fila seleccionada de la tabla empleados*/
 }

@@ -1,13 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MaIT UsuarioLogado</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style/style.css">
 </head>
-<body>
-    UsuarioLogado
-    <br>
-    <%= data %>
-</body>
+
+<body">
+    <center>
+        <div class="container">
+            <label class="labelUsuarioNuevo">
+                <%= user %> bienvenid@ a MaIT
+            </label>
+        </div>
+
+        <div class="tabla-contenedor">
+            <table id="miTabla">
+                <thead class="cabecera">
+                    <tr>
+                        <th>id</th>
+                        <th>nombre</th>
+                        <th>telefono</th>
+                        <th>puesto</th>
+                        <th>sueldo</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <% for(var i=0; i < data.length; i++){ %>
+                        <tr>
+                            <td>
+                                <%= data[i].id %>
+                            </td>
+                            <td>
+                                <%= data[i].nombre %>
+                            </td>
+                            <td>
+                                <%= data[i].telefono %>
+                            </td>
+                            <td>
+                                <%= data[i].puesto %>
+                            </td>
+                            <td>
+                                <%= data[i].sueldo %> €
+                            </td>
+                        </tr>
+                        <% } %>
+
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <div class="containerLinks">
+            <div>
+                <form action="/crear" method="GET">
+                    <button type="submit" id="btnCrear" class="btn btn-success">Crear</button>
+                </form>
+            </div>
+            <div>
+                <form action="/modificar" method="POST">
+                    <input type="hidden" name="user" value="<%= user %>">
+                    <input type="hidden" name="id" id="inputId">
+                    <input type="hidden" name="nombre" id="inputNombre">
+                    <input type="hidden" name="telefono" id="inputTelefono">
+                    <input type="hidden" name="puesto" id="inputPuesto">
+                    <input type="hidden" name="sueldo" id="inputSueldo">
+                    <button type="submit" id="btnModificar" class="btn btn-primary" disabled>Modificar</button>
+                </form>
+            </div>
+            <div>
+                <form action="/eliminar" method="POST">
+                    <input type="hidden" name="user" value="<%= user %>">
+                    <input type="hidden" name="id" id="eliminaId">
+                    <input type="hidden" name="nombre" id="eliminaNombre">
+                    <input type="hidden" name="telefono" id="eliminaTelefono">
+                    <input type="hidden" name="puesto" id="eliminaPuesto">
+                    <input type="hidden" name="sueldo" id="eliminaSueldo">
+                    <button type="submit" id="btnEliminar" class="btn btn-danger" disabled>Eliminar</button>
+                </form>
+            </div>
+        </div>
+        <div>
+            <br>
+            <form action="/" method="GET">
+                <button class="flecha">&larr; Página inicial</button>
+            </form>
+        </div>
+    </center>
+
+    <script>
+        // Obtener todas las filas de la tabla
+        var filas = document.querySelectorAll("#miTabla tr");
+        var btnModificar = document.getElementById("btnModificar");
+        var btnEliminar = document.getElementById("btnEliminar");
+
+        // Recorrer todas las filas y agregar un evento clic a cada una
+        filas.forEach(function (fila) {
+            fila.addEventListener("click", function () {
+                // Remover la clase 'selected' de todas las filas
+                filas.forEach(function (fila) {
+                    fila.classList.remove("selected");
+                });
+                // Agregar la clase 'selected' a la fila clicada
+                this.classList.add("selected");
+
+                var id = this.cells[0].textContent;
+                var nombre = this.cells[1].textContent;
+                var telefono = this.cells[2].textContent;
+                var puesto = this.cells[3].textContent;
+                var sueldo = this.cells[4].textContent;
+
+                // Asignar valores a los campos de entrada ocultos del formulario para modificar
+                document.getElementById("inputId").value = id;
+                document.getElementById("inputNombre").value = nombre;
+                document.getElementById("inputTelefono").value = telefono;
+                document.getElementById("inputPuesto").value = puesto;
+                document.getElementById("inputSueldo").value = sueldo;
+
+                // Asignar valores a los campos de entrada ocultos del formulario para eliminar
+                document.getElementById("eliminaId").value = id;
+                document.getElementById("eliminaNombre").value = nombre;
+                document.getElementById("eliminaTelefono").value = telefono;
+                document.getElementById("eliminaPuesto").value = puesto;
+                document.getElementById("eliminaSueldo").value = sueldo;
+
+                //esto se ve en la consola de la parte cliente no server :)
+                console.log("Seleccionaste: id ", id, " nombre ", nombre);
+                // Habilitar o deshabilitar el botón según si hay una fila seleccionada
+                if (this.classList.contains("selected")) {
+                    btnModificar.disabled = false;
+                    btnEliminar.disabled = false;
+                } else {
+                    btnModificar.disabled = true;
+                    btnEliminar.disabled = true;
+                }
+            });
+        });
+    </script>
+
+    </body>
+
 </html>
