@@ -3,6 +3,14 @@ body {
     width: 50%; 
     margin: auto;    
 }
+.container {
+    width: 85%;
+    max-width: 850px;
+    margin: 0 auto;
+    font-size: large;
+    color: rgb(91, 29, 29);
+    text-align: center;
+  }
 .form-container{
     background: linear-gradient(to right, #f39c12, #3498db );
     border-radius: 10px;
@@ -61,8 +69,11 @@ body {
 .smallContainer{
     display: grid;
     grid-template-columns: 100px 300px;
-    grid-template-rows: 50px;
+    grid-template-rows: 100px;
     height: auto;
+}
+.smallContainerItem{
+    height: 30px;
 }
 .bigInput{
     width: 300px;
@@ -148,4 +159,14 @@ th {
 }
 .selected {
     background-color: #106142; /* Cambia el color de fondo de la fila seleccionada de la tabla empleados*/
+}
+input[type="text"] {
+    font-family: Arial; /* Cambia el tipo de letra del input */
+    font-size: 20px; /* Tamaño de la fuente */
+    padding: 5px; /* Ajusta el relleno según sea necesario */
+  }
+input[type="password"] {
+    font-family: Arial, sans-serif; /* Cambia el tipo de letra del input */
+    font-size: 20px; /* Tamaño de la fuente */
+    padding: 5px; /* Ajusta el relleno según sea necesario */
 }

@@ -2,8 +2,11 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import { conexion } from './config/database.js';
 import bcrypt from 'bcryptjs';
-
+import session  from 'express-session';
 import dotenv from 'dotenv';
+
+
+
 dotenv.config();
 
 const app = express();
@@ -17,6 +20,12 @@ app.set('views', './views');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+app.use(session({
+    secret: 'secreto',
+    resave: true,
+    saveUninitialized: true
+}));
 
 app.post('/crearUsuario', (req, res) => {
     console.log(req.body);
@@ -73,12 +82,14 @@ app.get('/usuarioNuevo', (req, res) => {
     res.render('usuarioNuevo');
 });
 
-app.get('/crear', (req, res) => {
-    res.render('crear');
+app.post('/crear', (req, res) => {
+    const user = req.body.user;
+    res.render('crear', {user:user});
 });
 
 app.get('/eliminar', (req, res) => {
-    res.render('eliminar');
+    const user = req.body.user;
+    res.render('eliminar', {user: user});
 });
 
 app.get('/', (req, res) => {
@@ -86,7 +97,8 @@ app.get('/', (req, res) => {
 });
 
 app.get('/modificar', (req, res) => {
-    res.render('modificar');
+    const user = req.body.user;
+    res.render('modificar', {user: user});
 });
 
 app.get('/servicios', (req, res) => {
@@ -95,6 +107,7 @@ app.get('/servicios', (req, res) => {
 
 app.post('/crearEmpleado', (req, res) => {
     // no olvides hacer viajar el nombre del usuario de usuarioLogado a crear para que pueda viajar de vuelta
+    const user = req.body.user;
     const nombre = req.body.nombre;
     const telefono = req.body.telefono;
     const puesto = req.body.puesto;
@@ -116,7 +129,7 @@ app.post('/crearEmpleado', (req, res) => {
                 return;
             } else {
                 console.log('Result:', result);
-                res.render('usuarioLogado', { user: req.query.usuario, data: result });
+                res.render('usuarioLogado', { user: user, data: result });
             }
         });
     });
@@ -139,10 +152,8 @@ app.get('/usuarioLogado', (req, res) => {
                 bcrypt.compare(password, result[0].contrasena)
                     .then(match => {
                         if (match) {
-                            console.log('Contrasena OK (correcta)!');
-                            process.env.LOGADO='si';
-                            console.log('Usuario logado (del .env modificado) ? ', process.env.LOGADO);
                             // usuario este logat; acum recuperam datele din tabla empleados
+                            req.session.user = { username: usuario };//guardamos usuario en la session
                             conexion.query(`SELECT * FROM empleados`, (err, result) => {
                                 if (err) {
                                     console.error('Error al verificar el usuario:', err);
@@ -150,13 +161,15 @@ app.get('/usuarioLogado', (req, res) => {
                                     return;
                                 } else {
                                     console.log('Result:', result);
+                                    // no olvides hacer la prueba en vacío
                                     res.render('usuarioLogado', { user: req.query.usuario, data: result });
                                 }
                             });
                         } else {
                             console.log('Contrasena KO (incorrecta)!');
                             // fi atent ca renderul urmator e de proba doar
-                            res.render('usuarioKO', { data: req.query.usuario });
+                            const proba =req.query.usuario + ' contraseña incorrecto ';
+                            res.render('usuarioKO', { data: proba });
                         }
                     })
                     .catch(err => console.error(err));
@@ -168,6 +181,15 @@ app.get('/usuarioLogado', (req, res) => {
         }
     });
 
+});
+
+app.get('/proba', (req,res) => {
+    if(req.session.user && req.session.user.username){
+        console.log("User logged session:", req.session.user.username);
+        res.render('proba', {user:req.session.user.username});
+    }else{
+        console.log("No user logged in session");
+    }  
 });
 
 app.post('/modificar', (req, res) => {
@@ -254,5 +276,5 @@ app.get('/views/index', (req, res) => {
 app.listen(port, () => {
     console.log(`El server de tu app está levantado y escuchando en el ${port}`);
     console.log(`Accede http://localhost:${port}`);
-    console.log('Estado usuario (logado?):', process.env.LOGADO);
+    console.log('Hay usuario (logado?):', process.env.LOGADO);
 });

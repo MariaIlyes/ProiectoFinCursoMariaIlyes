@@ -13,7 +13,7 @@
 <body>
 
     <div>
-        <h2>Modificar</h2>
+        <h2>Modificar <%= user %></h2>
     </div>
     <form action="/modificarEmpleado" method="POST">
         <div class="smallContainer">
@@ -56,24 +56,26 @@
                 </div>
             </div>
         </div>
-        <br>
-        <br>
-        <br>
+
         <div>
             <input type="hidden" name="user" value="<%= user %>">
             <input type="hidden" name="id" value="<%= id %>">
-            <input type="hidden" name="nombre" value="<%= nombre %>">
-            <input type="hidden" name="telefono" value="<%= telefono %>">
-            <input type="hidden" name="puesto" value="<%= puesto %>">
-            <input type="hidden" name="sueldo" value="<%= sueldo %>">
+
             <button type="submit" class="btn btn-success">Modificar</button>
         </div>
-        <div>
-            <form action="/usuarioLogado" method="GET">
-                <button class="btn btn-dark">Cancelar</button>
-            </form>
-        </div>
+
     </form>
+    <div>
+        <form action="/usuarioLogado" method="GET">
+            <input type="hidden" name="user" value="<%= user %>">
+            <button type="button" onclick="cancel()" class="btn btn-dark">Cancelar</button>
+        </form>
+    </div>
+    <script>
+        function cancel() {
+            window.history.back();
+        }
+    </script>
 </body>
 
 </html>

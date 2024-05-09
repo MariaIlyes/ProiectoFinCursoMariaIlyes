@@ -9,15 +9,13 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="./style/style.css">
 </head>
-
-<body">
+<body>
     <center>
         <div class="container">
             <label class="labelUsuarioNuevo">
                 <%= user %> bienvenid@ a MaIT
             </label>
         </div>
-
         <div class="tabla-contenedor">
             <table id="miTabla">
                 <thead class="cabecera">
@@ -57,7 +55,8 @@
         <br>
         <div class="containerLinks">
             <div>
-                <form action="/crear" method="GET">
+                <form action="/crear" method="POST">
+                    <input type="hidden" name="user" value="<%= user %>">
                     <button type="submit" id="btnCrear" class="btn btn-success">Crear</button>
                 </form>
             </div>
@@ -108,11 +107,11 @@
                 // Agregar la clase 'selected' a la fila clicada
                 this.classList.add("selected");
 
-                var id = this.cells[0].textContent;
-                var nombre = this.cells[1].textContent;
-                var telefono = this.cells[2].textContent;
-                var puesto = this.cells[3].textContent;
-                var sueldo = this.cells[4].textContent;
+                var id = this.cells[0].textContent.trim();
+                var nombre = this.cells[1].textContent.trim();
+                var telefono = this.cells[2].textContent.trim();
+                var puesto = this.cells[3].textContent.trim();
+                var sueldo = this.cells[4].textContent.trim();
 
                 // Asignar valores a los campos de entrada ocultos del formulario para modificar
                 document.getElementById("inputId").value = id;

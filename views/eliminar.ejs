@@ -12,7 +12,8 @@
 
 <body>
     <div>
-        <h2>Eliminar</h2>
+        <h2>Eliminar <%= user %>
+        </h2>
     </div>
     <form action="/eliminarEmpleado" method="POST">
         <div class="smallContainer">
@@ -64,13 +65,15 @@
             <input type="hidden" name="id" value="<%= id %>">
             <button type="submit" class="btn btn-success">Eliminar</button>
         </div>
-       
+        <div>
+            <button type="button" onclick="cancel()" class="btn btn-dark">Cancelar</button>
+        </div>
     </form>
-    <div>
-        <form action="/usuarioLogado" method="GET">
-            <button class="btn btn-dark">Cancelar</button>
-        </form>
-    </div>
+    <script>
+        function cancel() {
+            window.history.back();
+        }
+    </script>
 </body>
 
 </html>

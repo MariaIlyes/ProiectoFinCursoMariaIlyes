@@ -13,7 +13,7 @@
 <body>
     <div class="container">
         <label class="labelUsuarioNuevo">
-            bienvenid@ a MaIT
+            <%= user %> bienvenid@ a MaIT
         </label>
     </div>
     <div>
@@ -22,30 +22,30 @@
     <form action="/crearEmpleado" method="POST">
         <div class="smallContainer">
             <div>
-                <div>
+                <div class="smallContainerItem">
                     <label for="nombre">Nombre:</label>
                 </div>
-                <div>
+                <div class="smallContainerItem">
                     <label for="telefono">Teléfono:</label>
                 </div>
-                <div>
+                <div class="smallContainerItem">
                     <label for="puesto">Puesto:</label>
                 </div>
-                <div>
+                <div class="smallContainerItem">
                     <label for="sueldo">Sueldo:</label>
                 </div>
             </div>
             <div>
-                <div>
+                <div class="smallContainerItem">
                     <input class="bigInput" type="text" id="nombre" name="nombre" maxlength="30" required>
                 </div>
-                <div>
+                <div class="smallContainerItem">
                     <input class="bigInput" type="text" id="telefono" name="telefono" maxlength="9" required>
                 </div>
-                <div>
+                <div class="smallContainerItem">
                     <input class="bigInput" type="text" id="puesto" name="puesto" maxlength="50" required>
                 </div>
-                <div>
+                <div class="smallContainerItem">
                     <input class="bigInput" type="text" id="sueldo" name="sueldo" maxlength="7" required>
                 </div>
             </div>
@@ -53,15 +53,22 @@
         <br>
         <br>
         <br>
-        <div>
-            <button type="submit" class="btn btn-success">Crear</button>
-        </div>
-        <div>
-            <form action="/usuarioLogado" method="GET">
-                <button class="btn btn-dark">Cancelar</button>
-            </form>
+        <div class="smallContainer">
+            <div>
+                <input type="hidden" name="user" value="<%= user %>">
+                <button type="submit" class="btn btn-success">Crear</button>
+            </div>
+            <div>
+                <button type="button" onclick="cancel()" class="btn btn-dark">Cancelar</button>
+            </div>
         </div>
     </form>
+
+    <script>
+        function cancel() {
+            window.history.back();
+        }
+    </script>
 </body>
 
 </html>
