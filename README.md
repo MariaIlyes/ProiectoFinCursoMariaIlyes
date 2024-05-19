@@ -27,14 +27,14 @@ adicionales y mejorare la aplicación incluida su grafica.
 | :-----: | :-----: | :-----:|
 | Empezado| 11.04.2024 | 15.04.2024 |
 | paginas :                |
-| index       |  19.04.2024||
-| compania        | 19.04.2024||
-| servicios       | 19.04.2024||
-| nuevoUsuario         | 19.04.2024||
-| usuarioLogado       | 19.04.2024||
-| crear     | 19.04.2024 ||
-| modificar    |  19.04.2024 ||
-| eliminar    |   19.04.2024 ||
+| index       |  19.04.2024|19.05.2024|
+| compania        | 19.04.2024|19.05.2024|
+| servicios       | 19.04.2024|19.05.2024|
+| nuevoUsuario         | 19.04.2024|19.05.2024|
+| usuarioLogado       | 19.04.2024|19.05.2024|
+| crear     | 19.04.2024 |19.05.2024|
+| modificar    |  19.04.2024 |19.05.2024|
+| eliminar    |   19.04.2024 |19.05.2024|
 
 ## Configuracion proyecto
 Inicializamos el proyecto en node.js
@@ -60,11 +60,10 @@ Creamos 4 carpetas para separar conceptos:
  
   **config**
     
-   **models**
    
    **views**
    
-   **controllers**
+
 
 Creamos el **app.js** en la raíz y un **index.ejs** en views.
 
