@@ -23,7 +23,8 @@ Ahora inicia tu server/aplicación con el comando
 Ahora accede a la siguiente URL para empezar a utilizar la aplicación
 
 
-  **http:/localhost:5000**
+
+**http:/localhost:5000**
 
 
 Empieza por crear un Usuario y luego podrás crear, modificar, ver, o eliminar empleados
