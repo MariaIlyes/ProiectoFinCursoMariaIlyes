@@ -3,12 +3,12 @@
 ## Instrucciones de instalación del proyecto
 
 
-Ejecuta en tu **Mysql** el siguiente script de base de datos que encuentras en la carpeta **config**
+Ejecuta en tu **Mysql** el siguiente script de base de datos que encuentras en la carpeta **config** que esta situada en el proyecto que te has descargado al clonar este git
 
 
     initialqueries.sql
 
-Ejecuta en la carpeta **ProyectoFinCursoMariaIlyes** en un terminal o ventana de sistema el comando
+Ejecuta en la carpeta **ProyectoFinCursoMariaIlyes** que te has descargado al clonar este proyecto git, en un terminal o ventana de sistema el comando
 
 
     npm install
