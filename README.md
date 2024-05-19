@@ -13,6 +13,8 @@ Ejecuta en la carpeta **ProyectoFinCursoMariaIlyes** que te has descargado al cl
 
     npm install
 
+Arranca tu motor de base de datos Msql
+
 
 Ahora inicia tu server/aplicación con el comando
 
