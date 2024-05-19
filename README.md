@@ -76,13 +76,13 @@ Para ello tenemos que tener instalado node.js  el npm (Node Package Manager).
 Terminal: 
 
 
-        **npm init**
+    npm init
 
 Esto ha inicializado en package.json
 
 Terminal:
 
-   **npm install express ejs body-parser mysql2**
+    npm install express ejs body-parser mysql2
    
 MVC
 
