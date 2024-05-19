@@ -23,7 +23,7 @@ Ahora inicia tu server/aplicación con el comando
 Ahora accede a la siguiente URL para empezar a utilizar la aplicación
 
 
-  **http:/localhost:5000**
+    **http:/localhost:5000**
 
 
 Empieza por crear un Usuario y luego podrás crear, modificar, ver, o eliminar empleados
@@ -46,7 +46,7 @@ Es un proiecto de fin de curso de DAW
 [x]4	Relación de tecnologías a emplear.
 
 
-         He subido  el documento con la portada el 23.03.2024
+    He subido  el documento con la portada el 23.03.2024
 
 El enfoque del proyecto se va hacer creando las características fundamentales y luego, a medida que el tiempo lo permita, añadire las caracteristicas 
 adicionales y mejorare la aplicación incluida su grafica.
