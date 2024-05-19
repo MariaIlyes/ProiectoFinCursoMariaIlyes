@@ -8,58 +8,37 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="./style/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bellefair&family=Lato:wght@400;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+        integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
 </head>
 
 <body>
-    <br>
-    <div class="bigContainer">
-        <div>
-            <!--espacio vacío para cumplir con el grid bigContainer-->
-        </div>
-        <div>
-            <div class="containerLinks">
-                <div>
-                    <button class="linkedin"></button>
-                    <label class="blanco">Linkedin</label>
-                </div>
-                <div>
-                    <button class="email"></button>
-                    <label class="blanco">Email</label>
-                </div>
-                <div>
-                    <button class="telefono"></button>
-                    <label class="blanco">Teléfono</label>
-                </div>
-            </div>
-        </div>
-    </div>
-    <br>
+    <h1 class="encabezado-img">
+        bienvenid@ a MaIT ! 
+    </h1>
     <div class="bigContainer">
         <div>
             <img src="/imagenes/mait.jpg" alt="Logo empresa MaIT">
         </div>
         <div>
-            <form class="container" id="loginUsuario" action="/usuarioLogado" method="GET">
-                <div class="bigContainer">
+            <form class="container" id="loginUsuario" action="/usuarioLogado" method="POST">
+                <div>
                     <div class="input-group">
                         <label for="usuario">Usuario:</label>
                         <input type="text" id="usuario" name="usuario" placeholder="Escribe tu usuario" required>
                     </div>
-                    <div>
-                        
+                </div>
+                <div>
+                    <div class="input-group">
+                        <label for="contrasena">Contraseña:</label>
+                        <input type="password" id="contrasena" name="contrasena" placeholder="Escribe tu contraseña"
+                            required>
                     </div>
                 </div>
                 <div class="bigContainer">
                     <div class="input-group">
-                        <label for="contrasena">Contraseña:</label>
-                        <input type="password" id="contrasena" name="contrasena" placeholder="Escribe tu contraseña" required>
-                    </div>
-                    <div>
-                        
-                    </div>
-                </div>
-                <div class="bigContainer">
-                    <div>
                         <label>No tienes usuario ?</label>
                     </div>
                     <div>
@@ -85,6 +64,25 @@
             </form>
         </div>
     </div>
+    <section class="footer">
+        <footer>
+            <div class="container grid-container">
+                <div class="social-menu">
+                    <ul class="social-networks">
+                        <li class="social-linkedin"><a href="https://es.linkedin.com/"><i
+                                    class="fab fa-linkedin"></i></a></li>
+                        <li class="social-facebook"><a href="https://www.facebook.com"><i
+                                    class="fab fa-facebook-f"></i></a></li>
+                        <li class="social-networks"><a href="mailto:mait@gmail.com"><i class="fas fa-envelope"></i></a>
+                        </li>
+                        <li class="social-networks"><a href="https://www.whatsapp.com"><i
+                                    class="fab fa-whatsapp"></i></a></li>
+                    </ul>
+                </div>
+                <p>MaIT</p>
+            </div>
+        </footer>
+    </section>
 </body>
 
 </html>

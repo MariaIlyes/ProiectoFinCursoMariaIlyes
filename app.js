@@ -2,16 +2,14 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import { conexion } from './config/database.js';
 import bcrypt from 'bcryptjs';
-import session  from 'express-session';
+import session from 'express-session';
 import dotenv from 'dotenv';
-
-
 
 dotenv.config();
 
 const app = express();
 
-const port = 5000;
+const port = process.env.PORT;
 
 app.use(express.static('views'));
 
@@ -27,39 +25,36 @@ app.use(session({
     saveUninitialized: true
 }));
 
-app.post('/crearUsuario', (req, res) => {
-    console.log(req.body);
-    const nombre = req.body.nombre;
-    const apellidos = req.body.apellidos;
-    const telefono = req.body.telefono;
-    const nif = req.body.nif;
-    const email = req.body.email;
-    const contrasena = req.body.contrasena;
-    const usuario = req.body.usuario;
-    conexion.query('USE maitdb;', (err, result) => { });
-    // Comprobamos si el usuario ya existe en la tabla
-    conexion.query(`SELECT COUNT(*) AS count FROM usuarios WHERE usuario = '${usuario}'`, (err, result) => {
+app.get('/salir', (req, res) => {
+    req.session.destroy((err) => {
         if (err) {
-            console.error('Error al verificar el usuario:', err);
-            res.status(500).send('Error interno del servidor');
+            console.error('Error al cerrar sesión:', err);
+        } else {
+            res.render('index');
+        }
+    });
+});
+
+app.post('/crearUsuario', (req, res) => {
+    const { nombre, apellidos, telefono, nif, email, contrasena, usuario } = req.body;
+    // Comprobamos si el usuario ya existe en la tabla
+    conexion.query(`SELECT COUNT(*) AS count FROM ${process.env.DATABASE}.usuarios WHERE usuario = '${usuario}'`, (err, result) => {
+        if (err) {
+            res.status(500).send('Error interno del servidor (a la hora de intentar verificar el usuario)');
             return;
         }
-        console.log(result.length);
-        console.log(result[0].count);
         // si el usuario existe decimos que no permitimos su creación ya que lo duplicaríamos
         if (result.length > 0 && result[0].count > 0) {
-            res.render('usuarioKO', { data: usuario });
+            res.render('usuarioExistente');
         } else {
             // si el usuario que se desea crear no existe en la bd, lo insertamos en la tabla
             bcrypt.hash(contrasena, 10)
                 .then(hash => {
-                    console.log('Hash resultado de aplicar bcryptjs a tu contraseña:', hash);
-                    const sql = `INSERT INTO usuarios(nombre, apellidos, telefono, nif, email, contrasena, usuario) 
+                    const sql = `INSERT INTO ${process.env.DATABASE}.usuarios(nombre, apellidos, telefono, nif, email, contrasena, usuario) 
                     VALUES (?, ?, ?, ?, ?, ?, ?)`;
                     conexion.query(sql, [nombre, apellidos, telefono, nif, email, hash, usuario], (err, result) => {
                         if (err) {
-                            console.error('Error al insertar el usuario:', err);
-                            res.status(500).send('Error interno del servidor');
+                            res.status(500).send('Error interno del servidor (al insertar el usuario)');
                             return;
                         }
                         // e informamos que el usuario se ha creado con éxito
@@ -69,7 +64,6 @@ app.post('/crearUsuario', (req, res) => {
                 .catch(err => {
                     console.error(err);
                 });
-
         }
     });
 });
@@ -82,14 +76,9 @@ app.get('/usuarioNuevo', (req, res) => {
     res.render('usuarioNuevo');
 });
 
-app.post('/crear', (req, res) => {
-    const user = req.body.user;
-    res.render('crear', {user:user});
-});
-
 app.get('/eliminar', (req, res) => {
     const user = req.body.user;
-    res.render('eliminar', {user: user});
+    res.render('eliminar', { user: user });
 });
 
 app.get('/', (req, res) => {
@@ -98,140 +87,130 @@ app.get('/', (req, res) => {
 
 app.get('/modificar', (req, res) => {
     const user = req.body.user;
-    res.render('modificar', {user: user});
+    res.render('modificar', { user: user });
 });
 
 app.get('/servicios', (req, res) => {
     res.render('servicios');
 });
 
+app.get('/perfil', (req, res) => {
+    if (req.session.user && req.session.user.username) {
+        console.log("User logged session:", req.session.user.username);
+        conexion.query(`SELECT * FROM ${process.env.DATABASE}.usuarios WHERE usuario = '${req.session.user.username}'`, (err, result) => {
+            if (err) {
+                res.status(500).send('Error interno del servidor (a la hora de intentar verificar el usuario)');
+                return;
+            }
+            // si el usuario existe decimos que no permitimos su creación ya que lo duplicaríamos
+            res.render('perfil', { user: req.session.user.username, data: result });
+
+        });
+
+    } else {
+        console.log("No user logged in session");
+    }
+});
+
 app.post('/crearEmpleado', (req, res) => {
     // no olvides hacer viajar el nombre del usuario de usuarioLogado a crear para que pueda viajar de vuelta
-    const user = req.body.user;
-    const nombre = req.body.nombre;
-    const telefono = req.body.telefono;
-    const puesto = req.body.puesto;
-    const sueldo = req.body.sueldo;
-    conexion.query('USE maitdb;', (err, result) => { });
-    const sql = `INSERT INTO empleados(nombre, telefono, puesto, sueldo) 
-                    VALUES (?, ?, ?, ?)`;
-    conexion.query(sql, [nombre, telefono, puesto, sueldo], (err, result) => {
+    const { nombre, apellidos, telefono, puesto, sueldo } = req.body;
+    const sql = `INSERT INTO ${process.env.DATABASE}.empleados(nombre, apellidos, telefono, puesto, sueldo, usuario) 
+                    VALUES (?, ?, ?, ?, ?, ?)`;
+    conexion.query(sql, [nombre, apellidos, telefono, puesto, sueldo, req.session.user.username], (err, result) => {
         if (err) {
-            console.error('Error al insertar el empleado(técnico):', err);
-            res.status(500).send('Error interno del servidor');
+            res.status(500).send('Error interno del servidor (al insertar el empleado)');
             return;
         }
         // recuperamos los datos de la tabla empleados para renderizarlos en usuarioLogado
-        conexion.query(`SELECT * FROM empleados`, (err, result) => {
+        conexion.query(`SELECT * FROM ${process.env.DATABASE}.empleados WHERE usuario = '${req.session.user.username}'`, (err, result) => {
             if (err) {
-                console.error('Error técnico al verificar el usuario:', err);
                 res.status(500).send('Error interno del servidor');
                 return;
             } else {
-                console.log('Result:', result);
-                res.render('usuarioLogado', { user: user, data: result });
+                res.render('usuarioLogado', { user: req.session.user.username, data: result });
             }
         });
     });
 });
 
-app.get('/usuarioLogado', (req, res) => {
-    console.log('Usuario:', req.query.usuario);
-    console.log('Contrasena', req.query.contrasena);
-    const usuario = req.query.usuario;
-    const password = req.query.contrasena;
-    // recibo el req y de allí recogo el usuario y su contrasena // luego hago un select a la DB para ver si el usuario existe:
-    // si no existe doy mensaje "usuario" no existe   // si existe cojo su contrasena hasheada guardada en la db y la comparo con la contrasena hasheada del req.body
-    conexion.query('USE maitdb;', (err, result) => { });
-    conexion.query(`SELECT contrasena FROM usuarios WHERE usuario = '${usuario}'`, (err, result) => {
-        if (err) {
-            throw err;
-        } else {
-            if (result.length > 0) {
-                console.log('Hashul salvat in baza de date este:', result[0].contrasena);
-                bcrypt.compare(password, result[0].contrasena)
-                    .then(match => {
-                        if (match) {
-                            // usuario este logat; acum recuperam datele din tabla empleados
-                            req.session.user = { username: usuario };//guardamos usuario en la session
-                            conexion.query(`SELECT * FROM empleados`, (err, result) => {
-                                if (err) {
-                                    console.error('Error al verificar el usuario:', err);
-                                    res.status(500).send('Error interno del servidor');
-                                    return;
-                                } else {
-                                    console.log('Result:', result);
-                                    // no olvides hacer la prueba en vacío
-                                    res.render('usuarioLogado', { user: req.query.usuario, data: result });
-                                }
-                            });
-                        } else {
-                            console.log('Contrasena KO (incorrecta)!');
-                            // fi atent ca renderul urmator e de proba doar
-                            const proba =req.query.usuario + ' contraseña incorrecto ';
-                            res.render('usuarioKO', { data: proba });
-                        }
-                    })
-                    .catch(err => console.error(err));
-            } else {
-                console.log('No existe este usuario!');
-                // fi atent ca renderul urmator e de proba doar
-                res.render('usuarioKO', { data: req.query.usuario });
+app.post('/usuarioLogado', (req, res) => {
+    const usuario = req.body.usuario;
+    const password = req.body.contrasena;
+    if (req.session.user && req.session.user.username) { // si ya existe session y username recuperamos los empleados del usuario la bd
+        conexion.query(`SELECT * FROM ${process.env.DATABASE}.empleados WHERE usuario = '${req.session.user.username}'`, (err, result) => {
+            if (err) {
+                res.status(500).send('Error interno del servidor (al recuperar los empleados)');
+                return;
+            } else { // recuperamos correctamente los empleados del usuario logado
+                res.render('usuarioLogado', { user: req.session.user.username, data: result });
             }
-        }
-    });
-
+        });
+    } else { // si no hay session o no hay username procedemos a recuperar la contrasena del usuario (todavia no logado) de la bd
+        conexion.query(`SELECT contrasena FROM ${process.env.DATABASE}.usuarios WHERE usuario = '${usuario}'`, (err, result) => {
+            if (err) { // error al ejecutar la query de búsqueda de contrasena del usuario en la bd
+                res.status(500).send('Error interno del servidor (al recuperar la contrasena)');
+                return;
+            } else { // usuario existe en la bd y recuperamos su contrasena
+                if (result.length > 0) {
+                    bcrypt.compare(password, result[0].contrasena)
+                        .then(match => {
+                            if (match) { // usuario logado; asignamos valor a la req.session.user                                 
+                                req.session.user = { username: usuario }; // guardamos usuario en la session
+                                conexion.query(`SELECT * FROM ${process.env.DATABASE}.empleados WHERE usuario = '${req.session.user.username}'`, (err, result) => {
+                                    if (err) {
+                                        res.status(500).send('Error interno del servidor (al recuperar los empleados, habiendo recuperado la contrasena)');
+                                        return;
+                                    } else { // recuperados los empleados del usuario pintamos su tabla                              
+                                        res.render('usuarioLogado', { user: req.session.user.username, data: result });
+                                    }
+                                });
+                            } else { // la contrasena no coincide
+                                res.render('usuarioKO');
+                            }
+                        })
+                        .catch(err => console.error(err));
+                } else { // usuario no existe
+                    res.render('usuarioKO');
+                }
+            }
+        });
+    }
 });
 
-app.get('/proba', (req,res) => {
-    if(req.session.user && req.session.user.username){
-        console.log("User logged session:", req.session.user.username);
-        res.render('proba', {user:req.session.user.username});
-    }else{
-        console.log("No user logged in session");
-    }  
+app.post('/crear', (req, res) => {
+    const user = req.body.user;
+    res.render('crear', { user: user });
 });
 
 app.post('/modificar', (req, res) => {
-    const user = req.body.user;
-    const id = req.body.id;
-    const nombre = req.body.nombre;
-    const telefono = req.body.telefono;
-    const puesto = req.body.puesto;
-    const sueldo = req.body.sueldo;
-    res.render('modificar', { user:user, id: id, nombre: nombre, telefono: telefono, puesto: puesto, sueldo: sueldo });
+    if (req.session.user && req.session.user.username) {
+        const { id, nombre, apellidos, telefono, puesto, sueldo } = req.body;
+        res.render('modificar', { user: req.session.user.username, id: id, nombre: nombre, apellidos: apellidos, telefono: telefono, puesto: puesto, sueldo: sueldo });
+    } else {
+        res.render('index');
+    }
 });
 
 app.post('/eliminar', (req, res) => {
-    const user = req.body.user;
-    const id = req.body.id;
-    const nombre = req.body.nombre;
-    const telefono = req.body.telefono;
-    const puesto = req.body.puesto;
-    const sueldo = req.body.sueldo;
-    res.render('eliminar', { user: user, id: id, nombre: nombre, telefono: telefono, puesto: puesto, sueldo: sueldo });
+    const { id, nombre, apellidos, telefono, puesto, sueldo } = req.body;
+    res.render('eliminar', { user: req.session.user.username, id: id, nombre: nombre, apellidos: apellidos, telefono: telefono, puesto: puesto, sueldo: sueldo });
 });
 
 app.post('/eliminarEmpleado', (req, res) => {
-    const user = req.body.user;
     const id = req.body.id;
-    conexion.query('USE maitdb;', (err, result) => { });
-    conexion.query(`DELETE FROM empleados WHERE id='${id}'`, (err, result) => {
+    conexion.query(`DELETE FROM ${process.env.DATABASE}.empleados WHERE id='${id}'`, (err, result) => {
         if (err) {
-            console.error('Error técnico:', err);
             res.status(500).send('Error interno del servidor');
             return;
         } else {
-            console.log('Deletion result:', result);
             // recuperamos los datos de la tabla empleados para renderizarlos en usuarioLogado
-            conexion.query(`SELECT * FROM empleados`, (err, result) => {
+            conexion.query(`SELECT * FROM ${process.env.DATABASE}.empleados WHERE usuario = '${req.session.user.username}'`, (err, result) => {
                 if (err) {
-                    console.error('Error técnico al verificar el usuario:', err);
                     res.status(500).send('Error interno del servidor');
                     return;
                 } else {
-                    console.log('Result:', result);
-                    res.render('usuarioLogado', { user: user,data: result });
+                    res.render('usuarioLogado', { user: req.session.user.username, data: result });
                 }
             });
         }
@@ -239,42 +218,46 @@ app.post('/eliminarEmpleado', (req, res) => {
 });
 
 app.post('/modificarEmpleado', (req, res) => {
-    const user = req.body.user;
-    const id = req.body.id;
-    const nombre = req.body.nombre;
-    const telefono = req.body.telefono;
-    const puesto = req.body.puesto;
-    const sueldo = req.body.sueldo;
-    conexion.query('USE maitdb;', (err, result) => { });
-    conexion.query(`UPDATE empleados SET nombre='${nombre}',telefono='${telefono}',puesto='${puesto}',sueldo='${sueldo}' WHERE id='${id}'`, (err, result) => {
+    const { id, nombre, apellidos, telefono, puesto, sueldo } = req.body;
+    conexion.query(`UPDATE ${process.env.DATABASE}.empleados SET nombre='${nombre}', apellidos= '${apellidos}', telefono='${telefono}',puesto='${puesto}',sueldo='${sueldo}' WHERE id='${id}'`, (err, result) => {
         if (err) {
-            console.error('Error técnico:', err);
             res.status(500).send('Error interno del servidor');
             return;
         } else {
-            console.log('Update result:', result);
             // recuperamos los datos de la tabla empleados para renderizarlos en usuarioLogado
-            conexion.query(`SELECT * FROM empleados`, (err, result) => {
+            conexion.query(`SELECT * FROM ${process.env.DATABASE}.empleados WHERE usuario = '${req.session.user.username}'`, (err, result) => {
                 if (err) {
-                    console.error('Error técnico al verificar el usuario:', err);
                     res.status(500).send('Error interno del servidor');
                     return;
                 } else {
-                    console.log('Result:', result);
-                    res.render('usuarioLogado', { user: user,data: result });
+                    res.render('usuarioLogado', { user: req.session.user.username, data: result });
                 }
             });
         }
     });
 });
 
-// verifica si realmente lo utilizamos o estamos servidos con app.get('/'....)
-app.get('/views/index', (req, res) => {
-    res.render('index');
+app.post('/modificarUsuario', (req, res) => {
+    const { usuario, nombre, apellidos, telefono, nif, email } = req.body;
+    conexion.query(`UPDATE ${process.env.DATABASE}.usuarios SET nombre='${nombre}', apellidos= '${apellidos}', telefono='${telefono}', nif='${nif}',email='${email}' WHERE usuario='${usuario}'`, (err, result) => {
+        if (err) {
+            res.status(500).send('Error interno del servidor');
+            return;
+        } else {
+            // recuperamos los datos de la tabla empleados para renderizarlos en usuarioLogado
+            conexion.query(`SELECT * FROM ${process.env.DATABASE}.empleados WHERE usuario = '${req.session.user.username}'`, (err, result) => {
+                if (err) {
+                    res.status(500).send('Error interno del servidor');
+                    return;
+                } else {
+                    res.render('usuarioLogado', { user: req.session.user.username, data: result });
+                }
+            });
+        }
+    });
 });
 
 app.listen(port, () => {
-    console.log(`El server de tu app está levantado y escuchando en el ${port}`);
-    console.log(`Accede http://localhost:${port}`);
-    console.log('Hay usuario (logado?):', process.env.LOGADO);
+    console.log(`Server de tu app levantado y escuchando en el puerto ${port}`);
+    console.log(`Accede a tu app http://localhost:${port}`);
 });

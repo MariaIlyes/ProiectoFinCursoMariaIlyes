@@ -1,0 +1,398 @@
+*{
+  box-sizing: border-box;
+  line-height: 1.4rem;
+}
+
+body {
+  margin: 0 auto;
+  font-family: "Open Sans";
+  color: beige;
+  background-color: bisque;
+}
+nav{
+  left: 0;
+  top: 0;
+  right: 0;
+  background-color: rgb(74, 126, 92);
+  text-align: center;
+  padding: 0px 0;
+  position: fixed;
+  border-radius: 0px 0px 20px 20px;
+  box-shadow: 0 0 20px coral;
+}
+nav a{
+  font-size: 2rem;
+  text-decoration: none;
+  color: rgba(49, 37, 4, 0.671);
+  margin: 0 25px;
+}
+nav ul{
+  float:none;
+  margin-right: 0px;
+}
+nav ul li{
+  display: inline-block;
+  line-height: 80px;
+  margin: 0 5px;
+}
+nav ul li a :hover {
+  background-color: #31190700;
+  color: bisque;
+}
+
+.checkbtn{
+  font-size: 30px;
+  color:rgba(49, 37, 4, 0.671);
+  float: right;
+  line-height: 80px;
+  margin-right: 70px;
+  cursor: pointer;
+  display: none;
+}
+#check{
+  display: none;
+}
+@media (max-width: 992px){
+  .enlace{
+      padding-left: 20px;
+  }
+  nav ul li a{
+      font-size: 25px;
+  }
+
+}
+
+@media (max-width: 767px){
+  .checkbtn{
+      display: block;
+  }
+  ul{
+      position: fixed;
+      width: 100%;
+      height: 100vh;
+      background:  rgb(74, 126, 92);
+      top: 80px;
+      left: -100%;
+      text-align: center;
+      transition: all .5s;
+      box-shadow: 0 0 20px coral;
+      border-radius: 0px 20px 20px 0px;
+  }
+  nav ul li{
+      display: block;
+      margin: 50px 0;
+      line-height: 30px;
+  }
+  nav ul li a{
+      font-size: 20px;
+  }
+  li a:hover, li a.active{
+      background: none;
+      color: rgba(49, 37, 4, 0.671);
+  }
+  #check:checked ~ ul{
+      left:0;
+  }
+}
+nav a {
+  font-size: 2rem;
+  text-decoration: none;
+  color: rgba(49, 37, 4, 0.671);
+  margin: 0 25px;
+}
+nav a:hover {
+  background-color: #31190700;
+  color: bisque;
+}
+.encabezado-img {
+  margin: 20px  0 0;
+  padding: 1rem;
+  background-image: url(imgages/encabezado.jpg);
+  height: 400px;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 20px coral;
+  border-radius: 20px;
+}
+.encabezado-img h1 {
+  font-size: 4.5vw;
+  line-height: 1.5rem;
+}
+.encabezado-img h2 {
+  font-size: 3vw;
+   line-height: 1.5rem;
+}
+.container {
+  width: 85%;
+  max-width: 850px;
+  margin: 0 auto;
+  font-size: large;
+  color: rgb(91, 29, 29);
+  text-align: center;
+}
+p {
+  margin-bottom: 1.8rem;
+}
+.carrousel {
+  width: 90%;
+  max-width: 120em;
+  background-color: rgb(74, 126, 92);
+  
+}
+.container .grande {
+  width: 200%;
+  background-color: bisque;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+
+  
+}
+form{
+  padding: 50px 55px;
+  box-shadow: 0 0 20px coral;
+  border-radius: 20px;
+  text-align: center;
+  width: 100%;
+}
+.input-group{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+label{
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+input, textarea{
+  padding: 17px 25px;
+  border-radius: 25px;
+  margin-bottom: 20;
+  background-color: beige;
+  border: 2px solid rgba(49, 37, 4, 0.671);
+  color: rgba(49, 37, 4, 0.671);
+  outline: none;
+}
+.form-txt {
+  margin-bottom: 14px;
+  
+  justify-items:auto;
+  text-align: center;
+  padding: 2px;
+}
+.form-txt a {
+  color: rgb(91, 29, 29);
+  font-size: 17px;
+  font-weight: 600;
+  text-decoration: none;
+  margin: 2px 5px;
+}
+.btn{
+  font-size: 16px;
+  color: #000;
+  border: 0;
+  border-radius:  rgb(91, 169, 118);
+  box-shadow: #ecf7f7;
+  cursor: pointer;
+}
+.btn:hover{
+  background-color:  rgb(74, 126, 92);
+}
+.carousel {
+  
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+}
+#imagen {
+
+  width: 100%;
+  height: 400px;
+  background-size: cover;
+}
+#retroceder:hover{
+  background-color: rgb(244, 237, 237);
+
+  opacity: 0.5;
+ 
+}
+#avanzar:hover{
+  background-color: rgb(244, 237, 237);
+
+  opacity: 0.5;
+ 
+}
+#avanzar{
+  background-color: rgb(244, 237, 237);
+}
+#retroceder{
+  background-color: rgb(244, 237, 237); 
+}
+/* ----- ----- Footer ----- ----- */
+.footer{
+  background-color: #f2f2f2;
+}
+footer{
+  background-color: rgb(74, 126, 92);
+    padding: 4rem 0;
+    text-align: center;
+    margin-top: 6rem;
+    box-shadow: 0 0 20px coral;
+    border-radius: 20px;
+    
+  }
+footer p{
+  color: #a4a4a4;
+  font-family: 'Bellefair', serif;
+  font-size: 16px;
+}
+.social-menu{
+  margin-bottom: 25px
+}
+.social-networks{
+  margin-left: 0;
+  padding-left: 0;
+  scale: 3px;
+  
+}
+.social-networks li{
+  display: inline-block;
+}
+.social-networks a{
+  margin: 0;
+  padding: 0;
+  display: block;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  background: #8a9692;
+  color: #fff;
+  transition: background .3s ease-in-out;
+  -webkit-transition: background .3s ease-in-out;
+}
+.social-networks a:hover{
+  background-color: #c5cbcbfe;
+  scale: 1.5;
+  border-radius: 10px;
+  
+}
+.social-menu .social-networks li a{
+  margin: 0 8px;
+}
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+/*
+ * Hide visually and from screen readers
+ */
+
+.hidden,
+[hidden] {
+  display: none !important;
+}
+
+/*
+ * Hide only visually, but have it available for screen readers:
+ * https://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+ *
+ * 1. For long content, line feeds are not interpreted as spaces and small width
+ *    causes content to wrap 1 word per line:
+ *    https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe
+ */
+
+.sr-only {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  /* 1 */
+}
+
+/*
+ * Extends the .sr-only class to allow the element
+ * to be focusable when navigated to via the keyboard:
+ * https://www.drupal.org/node/897638
+ */
+
+.sr-only.focusable:active,
+.sr-only.focusable:focus {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  white-space: inherit;
+  width: auto;
+}
+
+/*
+ * Hide visually and from screen readers, but maintain layout
+ */
+
+.invisible {
+  visibility: hidden;
+}
+
+/*
+ * Clearfix: contain floats
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    `contenteditable` attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that receive the `clearfix` class.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ 
+ box-shadow: 0 0 20px coral;
+    border-radius: 20px;
+ 
+ */
+
+.clearfix::before,
+.clearfix::after {
+  content: " ";
+  display: table;
+}
+
+.clearfix::after {
+  clear: both;
+}
+.con {
+  background-color:white!important;
+}
+
+.rounded-button {
+  border-radius: 20px; /* Ajusta el valor según el grado de redondez que desees */
+  padding: 10px 20px; /* Ajusta el relleno según sea necesario */
+  background-color: coral; /* Color de fondo del botón */
+  color: #fff; /* Color del texto */
+  border: 10 px; /* Elimina el borde del botón */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+}
+
+/* Estilo del botón al pasar el cursor */
+.rounded-button:hover {
+  background-color: #043125; /* Cambia el color de fondo al pasar el cursor */
+}
+input[type="text"] {
+  font-family: Arial; /* Cambia el tipo de letra del input */
+  font-size: 20px; /* Tamaño de la fuente */
+  padding: 5px; /* Ajusta el relleno según sea necesario */
+}
+input[type="password"] {
+  font-family: Arial, sans-serif; /* Cambia el tipo de letra del input */
+  font-size: 20px; /* Tamaño de la fuente */
+  padding: 5px; /* Ajusta el relleno según sea necesario */
+}

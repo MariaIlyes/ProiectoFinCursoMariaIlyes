@@ -1,7 +1,7 @@
 {
   "name": "mait",
   "version": "1.0.0",
-  "description": "Proyecro fin de curso Maria Ilyes daw",
+  "description": "Proyecto fin de curso Maria Ilyes daw",
   "main": "app.js",
   "type": "module",
   "scripts": {
