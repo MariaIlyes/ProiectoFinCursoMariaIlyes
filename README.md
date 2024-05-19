@@ -3,19 +3,30 @@
 ## Instrucciones de instalación del proyecto
 
 
-    Ejecuta en tu Mysql el siguiente script de base de datos que encuentras en la carpeta config
-   ** initialqueries.sql **
+Ejecuta en tu Mysql el siguiente script de base de datos que encuentras en la carpeta config
 
-   Ejecuta en la carpeta ProyectoFinCursoMariaIlyes en un terminal o ventana de sistema el comando 
-   ** npm install **
 
-  Ahora inicia tu server/aplicación con el comando 
-  ** npm start **
+   **initialqueries.sql**
 
-  Ahora accede a la siguiente URL para empezar a utilizar la aplicación
-  ** http:/localhost:5000 **
+Ejecuta en la carpeta ProyectoFinCursoMariaIlyes en un terminal o ventana de sistema el comando
 
-  Empieza por crear un Usuario y luego podrás crear, modificar, ver, o eliminar empleados
+
+   **npm install**
+
+
+Ahora inicia tu server/aplicación con el comando
+
+
+  **npm start**
+
+
+Ahora accede a la siguiente URL para empezar a utilizar la aplicación
+
+
+  **http:/localhost:5000**
+
+
+Empieza por crear un Usuario y luego podrás crear, modificar, ver, o eliminar empleados
 
 
  
