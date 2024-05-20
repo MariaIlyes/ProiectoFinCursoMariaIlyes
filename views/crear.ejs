@@ -24,58 +24,41 @@
     </div>
     <br>
     <div class="bigContainer">
-    <form action="/crearEmpleado" method="POST">
-                <div class="input-group">
-                    <label for="nombre">Nombre del empleado:</label>
-                    <input class="bigInput" type="text" id="nombre" name="nombre" maxlength="100" required>
-                </div>
-                <div class="input-group">
-                    <label for="apellidos">Apellidos del empleado:</label>
-                    <input class="bigInput" type="text" id="apellidos" name="apellidos" maxlength="100" required>
-                </div>
-                <div class="input-group">
-                    <label for="telefono">Teléfono del empleado:</label>
-                    <input class="bigInput" type="tel" pattern="[0-9]{9}" id="telefono" name="telefono" maxlength="9" required>
-                </div>
-                <div class="input-group">
-                    <label for="puesto">Puesto del empleado:</label>
-                    <input class="bigInput" type="text" id="puesto" name="puesto" maxlength="30" required>
-                </div>
-                <div class="input-group">
-                    <label for="sueldo">Sueldo del empleado:</label>
-                    <input class="bigInput" type="number" id="sueldo" name="sueldo" maxlength="7" required>
-                </div>
-        <br><br>
-        <div class="smallContainer">
-            <div>
-                <input type="hidden" name="user" value="<%= user %>">
-                <button type="submit" class="btn btn-success">Crear</button>
+        <form action="/crearEmpleado" method="POST">
+            <div class="input-group">
+                <label for="nombre">Nombre del empleado:</label>
+                <input class="bigInput" type="text" id="nombre" name="nombre" maxlength="100" required>
             </div>
-            <div>
-                <button type="button" onclick="window.history.back()" class="btn btn-dark">Cancelar</button>
+            <div class="input-group">
+                <label for="apellidos">Apellidos del empleado:</label>
+                <input class="bigInput" type="text" id="apellidos" name="apellidos" maxlength="100" required>
             </div>
-        </div>
-    </form>
-</div>
-<section class="footer">
-    <footer>
-        <div class="container grid-container">
-            <div class="social-menu">
-                <ul class="social-networks">
-                    <li class="social-linkedin"><a href="https://es.linkedin.com/"><i
-                                class="fab fa-linkedin"></i></a></li>
-                    <li class="social-facebook"><a href="https://www.facebook.com"><i
-                                class="fab fa-facebook-f"></i></a></li>
-                    <li class="social-networks"><a href="mailto:mait@gmail.com"><i class="fas fa-envelope"></i></a>
-                    </li>
-                    <li class="social-networks"><a href="https://www.whatsapp.com"><i
-                                class="fab fa-whatsapp"></i></a></li>
-                </ul>
+            <div class="input-group">
+                <label for="telefono">Teléfono del empleado:</label>
+                <input class="bigInput" type="tel" pattern="[0-9]{9}" id="telefono" name="telefono" maxlength="9"
+                    required>
             </div>
-            <p>MaIT</p>
-        </div>
-    </footer>
-</section>
+            <div class="input-group">
+                <label for="puesto">Puesto del empleado:</label>
+                <input class="bigInput" type="text" id="puesto" name="puesto" maxlength="30" required>
+            </div>
+            <div class="input-group">
+                <label for="sueldo">Sueldo del empleado:</label>
+                <input class="bigInput" type="number" id="sueldo" name="sueldo" maxlength="7" required>
+            </div>
+            <br><br>
+            <div class="smallContainer">
+                <div>
+                    <input type="hidden" name="user" value="<%= user %>">
+                    <button type="submit" class="btn btn-success">Crear</button>
+                </div>
+                <div>
+                    <button type="button" onclick="window.history.back()" class="btn btn-dark">Cancelar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <%- include('footer') %>
 </body>
 
 </html>

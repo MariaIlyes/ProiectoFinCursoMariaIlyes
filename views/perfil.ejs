@@ -22,7 +22,8 @@
                     <div>
                         <form action="/usuarioLogado" method="POST">
                             <input type="hidden" name="usuario" value="<%= user %>">
-                            <button class="button-otros" onclick="window.history.back()" type="submit" role="button">Tu gestión</button>
+                            <button class="button-otros" onclick="window.history.back()" type="submit" role="button">Tu
+                                gestión</button>
                         </form>
                     </div>
                     <div>
@@ -39,112 +40,44 @@
             <form action="/modificarUsuario" method="POST">
                 <div class="input-group">
                     <label for="nombre">Nombre del usuario:</label>
-                    <input class="bigInput" type="text" id="nombre" name="nombre" maxlength="30" value="<%= data[0].nombre %>" required>
+                    <input class="bigInput" type="text" id="nombre" name="nombre" maxlength="30"
+                        value="<%= data[0].nombre %>" required>
                 </div>
                 <div class="input-group">
                     <label for="apellidos">Apellidos del usuario:</label>
-                    <input class="bigInput" type="text" id="apellidos" name="apellidos" maxlength="60" value="<%= data[0].apellidos %>" required>
+                    <input class="bigInput" type="text" id="apellidos" name="apellidos" maxlength="60"
+                        value="<%= data[0].apellidos %>" required>
                 </div>
                 <div class="input-group">
                     <label for="telefono">Teléfono del usuario:</label>
-                    <input class="bigInput" type="text" id="telefono" name="telefono" maxlength="9" value="<%= data[0].telefono %>" required>
+                    <input class="bigInput" type="text" id="telefono" name="telefono" maxlength="9"
+                        value="<%= data[0].telefono %>" required>
                 </div>
                 <div class="input-group">
                     <label for="nif">NIF del usuario:</label>
-                    <input class="bigInput" type="text" id="nif" name="nif" maxlength="12" value="<%= data[0].nif %>" required>
+                    <input class="bigInput" type="text" id="nif" name="nif" maxlength="12" value="<%= data[0].nif %>"
+                        required>
                 </div>
                 <div class="input-group">
                     <label for="email">email del usuario:</label>
-                    <input class="bigInput" type="email" id="email" name="email" maxlength="100" value="<%= data[0].email %>" required>
+                    <input class="bigInput" type="email" id="email" name="email" maxlength="100"
+                        value="<%= data[0].email %>" required>
                 </div>
                 <div class="containerBtns">
                     <br><br>
                     <input type="hidden" name="usuario" value="<%= user %>">
-                <button type="submit" id="btnModificar" class="btn btn-primary">Modificar usuario ✏️📝</button>
-            </div>
+                    <button type="submit" id="btnModificar" class="btn btn-primary">Modificar usuario ✏️📝</button>
+                </div>
             </form>
         </div>
         <br>
-            <div>
-                <!--dejamos este div por si acaso-->
-            </div>
+        <div>
+            <!--dejamos este div por si acaso-->
+        </div>
         </div>
 
-        <section class="footer">
-            <footer>
-                <div class="container grid-container">
-                    <div class="social-menu">
-                        <ul class="social-networks">
-                            <li class="social-linkedin"><a href="https://es.linkedin.com/"><i
-                                        class="fab fa-linkedin"></i></a></li>
-                            <li class="social-facebook"><a href="https://www.facebook.com"><i
-                                        class="fab fa-facebook-f"></i></a></li>
-                            <li class="social-networks"><a href="mailto:mait@gmail.com"><i
-                                        class="fas fa-envelope"></i></a>
-                            </li>
-                            <li class="social-networks"><a href="https://www.whatsapp.com"><i
-                                        class="fab fa-whatsapp"></i></a></li>
-                        </ul>
-                    </div>
-                    <p>MaIT</p>
-                </div>
-            </footer>
-        </section>
+        <%- include('footer') %>
     </center>
-
-    <script>
-        // Obtener todas las filas de la tabla
-        var filas = document.querySelectorAll("#miTabla tr");
-        var btnModificar = document.getElementById("btnModificar");
-        var btnEliminar = document.getElementById("btnEliminar");
-
-        // Recorrer todas las filas y agregar un evento clic a cada una
-        filas.forEach(function (fila) {
-            fila.addEventListener("click", function () {
-                // Remover la clase 'selected' de todas las filas
-                filas.forEach(function (fila) {
-                    fila.classList.remove("selected");
-                });
-                // Agregar la clase 'selected' a la fila clicada
-                this.classList.add("selected");
-
-                var id = this.cells[0].textContent.trim();
-                var nombre = this.cells[1].textContent.trim();
-                var apellidos = this.cells[2].textContent.trim();
-                var telefono = this.cells[3].textContent.trim();
-                var puesto = this.cells[4].textContent.trim();
-                var sueldo = this.cells[5].textContent.trim();
-
-                // Asignar valores a los campos de entrada ocultos del formulario para modificar
-                document.getElementById("inputId").value = id;
-                document.getElementById("inputNombre").value = nombre;
-                document.getElementById("inputApellidos").value = apellidos;
-                document.getElementById("inputTelefono").value = telefono;
-                document.getElementById("inputPuesto").value = puesto;
-                document.getElementById("inputSueldo").value = sueldo;
-
-                // Asignar valores a los campos de entrada ocultos del formulario para eliminar
-                document.getElementById("eliminaId").value = id;
-                document.getElementById("eliminaNombre").value = nombre;
-                document.getElementById("eliminaApellidos").value = apellidos;
-                document.getElementById("eliminaTelefono").value = telefono;
-                document.getElementById("eliminaPuesto").value = puesto;
-                document.getElementById("eliminaSueldo").value = sueldo;
-
-                //esto se ve en la consola de la parte cliente no server :)
-                console.log("Seleccionaste: id ", id, " nombre ", nombre);
-                // Habilitar o deshabilitar el botón según si hay una fila seleccionada
-                if (this.classList.contains("selected")) {
-                    btnModificar.disabled = false;
-                    btnEliminar.disabled = false;
-                } else {
-                    btnModificar.disabled = true;
-                    btnEliminar.disabled = true;
-                }
-            });
-        });
-    </script>
-
 </body>
 
 </html>

@@ -1,7 +1,7 @@
 {
   "name": "mait",
   "version": "1.0.0",
-  "description": "Proyecto fin de curso Maria Ilyes daw",
+  "description": "Proyecto fin de curso Maria Ilyes DAW",
   "main": "app.js",
   "type": "module",
   "scripts": {
@@ -11,6 +11,7 @@
   "author": "Maria Ilyes",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
     "dotenv": "^16.4.5",

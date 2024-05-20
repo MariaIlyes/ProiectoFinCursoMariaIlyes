@@ -40,7 +40,8 @@
                         <th>Telefono Empleado</th>
                         <th>Puesto/rol del Empleado</th>
                         <th>Sueldo del Empleado</th>
-                        <th>Usuario Responsable </th>
+                        <th>idUsuario Responsable </th>
+                        <th>Usuario Responsable</th>
                     </tr>
                 </thead>
 
@@ -66,7 +67,10 @@
                                 <%= data[i].sueldo %> €
                             </td>
                             <td>
-                                <%= data[i].usuario %>
+                                <%= data[i].idUsuario %>
+                            </td>
+                            <td>
+                                <%= user %>
                             </td>
                         </tr>
                         <% } %>
@@ -109,26 +113,7 @@
                 </form>
             </div>
         </div>
-        <section class="footer">
-            <footer>
-                <div class="container grid-container">
-                    <div class="social-menu">
-                        <ul class="social-networks">
-                            <li class="social-linkedin"><a href="https://es.linkedin.com/"><i
-                                        class="fab fa-linkedin"></i></a></li>
-                            <li class="social-facebook"><a href="https://www.facebook.com"><i
-                                        class="fab fa-facebook-f"></i></a></li>
-                            <li class="social-networks"><a href="mailto:mait@gmail.com"><i
-                                        class="fas fa-envelope"></i></a>
-                            </li>
-                            <li class="social-networks"><a href="https://www.whatsapp.com"><i
-                                        class="fab fa-whatsapp"></i></a></li>
-                        </ul>
-                    </div>
-                    <p>MaIT</p>
-                </div>
-            </footer>
-        </section>
+        <%- include('footer') %>
     </center>
 
     <script>
